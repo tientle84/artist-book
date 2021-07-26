@@ -1,29 +1,29 @@
 import React, { Component } from "react";
 import { FlatList } from "react-native";
 import { ListItem } from "react-native-elements";
-import { MUSICIANS } from "../shared/musicians";
+import { SINGERS } from "../shared/singers";
 
-class MusicianList extends Component {
+class SingerList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            musicians: MUSICIANS,
+            singers: SINGERS,
         };
     }
 
     static navigationOptions = {
-        title: "Musician",
+        title: "Singer",
     };
 
     render() {
         const { navigate } = this.props.navigation;
-        const renderMusicianItem = ({ item }) => {
+        const renderSingerItem = ({ item }) => {
             return (
                 <ListItem
                     title={item.name}
                     subtitle={item.birthDate}
                     onPress={() =>
-                        navigate("MusicianInfo", { musicianId: item.id })
+                        navigate("SingerInfo", { singerId: item.id })
                     }
                     leftAvatar={{
                         source: { uri: item.image },
@@ -37,12 +37,12 @@ class MusicianList extends Component {
         return (
             <FlatList
                 centerContent={true}
-                data={this.state.musicians}
-                renderItem={renderMusicianItem}
+                data={this.state.singers}
+                renderItem={renderSingerItem}
                 keyExtractor={(item) => item.id.toString()}
             />
         );
     }
 }
 
-export default MusicianList;
+export default SingerList;

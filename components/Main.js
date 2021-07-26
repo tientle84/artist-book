@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import Home from "./Home";
 import MusicianList from "./MusicianList";
 import MusicianInfo from "./MusicianInfo";
+import SingerList from "./SingerList";
+import SingerInfo from "./SingerInfo";
+import AlbumList from "./AlbumList";
+import AlbumInfo from "./AlbumInfo";
 import Constants from "expo-constants";
 import { View, Platform } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
@@ -15,6 +19,44 @@ const MusicianNavigator = createStackNavigator(
     },
     {
         initialRouteName: "MusicianList",
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: "#5637DD",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+                color: "#fff",
+            },
+        },
+    }
+);
+
+const SingerNavigator = createStackNavigator(
+    {
+        SingerList: { screen: SingerList },
+        SingerInfo: { screen: SingerInfo },
+    },
+    {
+        initialRouteName: "SingerList",
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: "#5637DD",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+                color: "#fff",
+            },
+        },
+    }
+);
+
+const AlbumNavigator = createStackNavigator(
+    {
+        AlbumList: { screen: AlbumList },
+        AlbumInfo: { screen: AlbumInfo },
+    },
+    {
+        initialRouteName: "AlbumList",
         defaultNavigationOptions: {
             headerStyle: {
                 backgroundColor: "#5637DD",
@@ -48,6 +90,8 @@ const MainNavigator = createDrawerNavigator(
     {
         Home: { screen: HomeNavigator },
         Musician: { screen: MusicianNavigator },
+        Singer: { screen: SingerNavigator },
+        Album: { screen: AlbumNavigator },
     },
     {
         drawerBackgroundColor: "#CEC8FF",

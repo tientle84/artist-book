@@ -6,12 +6,7 @@ import { MUSICIANS } from "../shared/musicians";
 function RenderMusician({ musician }) {
     if (musician) {
         return (
-            <Card
-                title={musician.name}
-                // image={{
-                //     source: { uri: musician.image },
-                // }}
-            >
+            <Card title={musician.name}>
                 <Image
                     source={{ uri: musician.image }}
                     style={{

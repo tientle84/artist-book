@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import { View, Text, ScrollView } from "react-native";
-import { FlatList, Image } from "react-native";
-import { Card } from "react-native-elements";
-import { ListItem, Avatar } from "react-native-elements";
-import { MUSICIANS } from "../shared/musicians";
+import { ScrollView } from "react-native";
 import FeaturedMusicianList from "./FeaturedMusicianList";
 import FeaturedSingerList from "./FeaturedSingerList";
+import FeaturedAlbumList from "./FeaturedAlbumList";
 
 class Home extends Component {
     static navigationOptions = {
@@ -17,6 +14,7 @@ class Home extends Component {
             <ScrollView>
                 <FeaturedMusicianList navigation={this.props.navigation} />
                 <FeaturedSingerList navigation={this.props.navigation} />
+                <FeaturedAlbumList navigation={this.props.navigation} />
             </ScrollView>
         );
     }

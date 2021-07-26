@@ -1,25 +1,23 @@
 import React, { Component } from "react";
 import { TouchableOpacity, FlatList, Text, View } from "react-native";
 import { Avatar } from "react-native-elements";
-import { MUSICIANS } from "../shared/musicians";
+import { ALBUMS } from "../shared/albums";
 
-class FeaturedMusicianList extends Component {
+class FeaturedAlbumList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            musicians: MUSICIANS,
+            albums: ALBUMS,
         };
     }
 
     render() {
         const { navigate } = this.props.navigation;
-        const renderMusicianItem = ({ item }) => {
+        const renderAlbumItem = ({ item }) => {
             return (
                 <TouchableOpacity
                     style={{ alignItems: "center" }}
-                    onPress={() =>
-                        navigate("MusicianInfo", { musicianId: item.id })
-                    }
+                    onPress={() => navigate("AlbumInfo", { albumId: item.id })}
                 >
                     <Avatar
                         size={120}
@@ -29,7 +27,7 @@ class FeaturedMusicianList extends Component {
                         }}
                         containerStyle={{ margin: 10 }}
                     />
-                    <Text style={{ margin: 10 }}>{item.name}</Text>
+                    <Text style={{ margin: 10 }}>{item.title}</Text>
                 </TouchableOpacity>
             );
         };
@@ -45,9 +43,9 @@ class FeaturedMusicianList extends Component {
                     <Text
                         style={{ fontSize: 17, fontWeight: "bold", margin: 10 }}
                     >
-                        Featured Musicians
+                        Featured Albums
                     </Text>
-                    <TouchableOpacity onPress={() => navigate("MusicianList")}>
+                    <TouchableOpacity onPress={() => navigate("AlbumList")}>
                         <Text
                             style={{
                                 fontSize: 17,
@@ -62,8 +60,8 @@ class FeaturedMusicianList extends Component {
                 <FlatList
                     centerContent={true}
                     horizontal={true}
-                    data={this.state.musicians}
-                    renderItem={renderMusicianItem}
+                    data={this.state.albums}
+                    renderItem={renderAlbumItem}
                     keyExtractor={(item) => item.id.toString()}
                 />
             </View>
@@ -71,4 +69,4 @@ class FeaturedMusicianList extends Component {
     }
 }
 
-export default FeaturedMusicianList;
+export default FeaturedAlbumList;
