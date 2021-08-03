@@ -19,7 +19,7 @@ class MusicianList extends Component {
         let musicianList = [];
         musiciansRef.get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                musicianList.push(doc.data());
+                musicianList.push({ ...doc.data(), id: doc.id }); // add id prop (=doc id) for each musician
             });
 
             this.setState({ musicians: musicianList });
@@ -28,15 +28,13 @@ class MusicianList extends Component {
 
     render() {
         const { navigate } = this.props.navigation;
-        console.log(this.state.musicians);
+        //console.log(this.state.musicians);
         const renderMusicianItem = ({ item }) => {
             return (
                 <ListItem
                     title={item.name}
                     subtitle={item.birthDate}
-                    onPress={() =>
-                        navigate("MusicianInfo", { musicianId: item.id })
-                    }
+                    onPress={() => navigate("MusicianInfo", { musician: item })}
                     leftAvatar={{
                         source: { uri: item.image },
                         rounded: true,

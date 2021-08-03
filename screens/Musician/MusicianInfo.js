@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, Image } from "react-native";
 import { Card } from "react-native-elements";
-import { MUSICIANS } from "../../shared/musicians";
 
 function RenderMusician({ musician }) {
     if (musician) {
@@ -22,22 +21,12 @@ function RenderMusician({ musician }) {
 }
 
 class MusicianInfo extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            musicians: MUSICIANS,
-        };
-    }
-
     static navigationOptions = {
         title: "Musician Information",
     };
 
     render() {
-        const musicianId = this.props.navigation.getParam("musicianId");
-        const musician = this.state.musicians.filter(
-            (musician) => musician.id === musicianId
-        )[0];
+        const musician = this.props.navigation.getParam("musician");
         return <RenderMusician musician={musician} />;
     }
 }
