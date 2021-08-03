@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { FlatList } from "react-native";
 import { ListItem } from "react-native-elements";
 import { MUSICIANS } from "../shared/musicians";
+import { musiciansRef } from "./firebaseConfig";
 
 class MusicianList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            musicians: MUSICIANS,
+            musicians: [],
         };
     }
 
@@ -15,8 +16,20 @@ class MusicianList extends Component {
         title: "Musician",
     };
 
+    componentDidMount() {
+        let musicianList = [];
+        musiciansRef.get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                musicianList.push(doc.data());
+            });
+
+            this.setState({ musicians: musicianList });
+        });
+    }
+
     render() {
         const { navigate } = this.props.navigation;
+        console.log(this.state.musicians);
         const renderMusicianItem = ({ item }) => {
             return (
                 <ListItem

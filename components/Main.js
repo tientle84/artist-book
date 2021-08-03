@@ -4,13 +4,32 @@ import MusicianList from "./MusicianList";
 import MusicianInfo from "./MusicianInfo";
 import SingerList from "./SingerList";
 import SingerInfo from "./SingerInfo";
-import AlbumList from "./AlbumList";
-import AlbumInfo from "./AlbumInfo";
+import AlbumList from "./Album/AlbumList";
+import AlbumInfo from "./Album/AlbumInfo";
+import AudioPlayer from "./Player/AudioPlayer";
+import MusicPlayer from "./MusicPlayer";
 import Constants from "expo-constants";
 import { View, Platform } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 import { createDrawerNavigator } from "react-navigation-drawer";
 import { createAppContainer } from "react-navigation";
+
+const HomeNavigator = createStackNavigator(
+    {
+        Home: { screen: Home },
+    },
+    {
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: "#5637DD",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+                color: "#fff",
+            },
+        },
+    }
+);
 
 const MusicianNavigator = createStackNavigator(
     {
@@ -69,9 +88,26 @@ const AlbumNavigator = createStackNavigator(
     }
 );
 
-const HomeNavigator = createStackNavigator(
+const AudioPlayerNavigator = createStackNavigator(
     {
-        Home: { screen: Home },
+        AudioPlayer: { screen: AudioPlayer },
+    },
+    {
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: "#5637DD",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+                color: "#fff",
+            },
+        },
+    }
+);
+
+const MusicPlayerNavigator = createStackNavigator(
+    {
+        MusicPlayer: { screen: MusicPlayer },
     },
     {
         defaultNavigationOptions: {
@@ -92,6 +128,8 @@ const MainNavigator = createDrawerNavigator(
         Musician: { screen: MusicianNavigator },
         Singer: { screen: SingerNavigator },
         Album: { screen: AlbumNavigator },
+        Audio: { screen: AudioPlayerNavigator },
+        Music: { screen: MusicPlayerNavigator },
     },
     {
         drawerBackgroundColor: "#CEC8FF",
