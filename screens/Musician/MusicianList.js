@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { FlatList } from "react-native";
 import { ListItem } from "react-native-elements";
-import { MUSICIANS } from "../shared/musicians";
-import { musiciansRef } from "./firebaseConfig";
+import { musiciansRef } from "../../firebase/firebaseConfig";
 
 class MusicianList extends Component {
     constructor(props) {

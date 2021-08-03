@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 import { ALBUMS } from "../../shared/albums";
-import AudioPlayer from "../Player/AudioPlayer";
+import AudioPlayer from "./Player/AudioPlayer";
 import { LinearGradient } from "expo-linear-gradient";
 
 function RenderAlbum({ album }) {

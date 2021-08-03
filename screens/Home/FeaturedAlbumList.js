@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { TouchableOpacity, FlatList, Text, View } from "react-native";
 import { Avatar } from "react-native-elements";
-import { ALBUMS } from "../shared/albums";
+import { ALBUMS } from "../../shared/albums";
 
 class FeaturedAlbumList extends Component {
     constructor(props) {

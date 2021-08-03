@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FlatList } from "react-native";
 import { ListItem } from "react-native-elements";
-import { SINGERS } from "../shared/singers";
+import { SINGERS } from "../../shared/singers";
 
 class SingerList extends Component {
     constructor(props) {

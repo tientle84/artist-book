@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-import Home from "./Home";
-import MusicianList from "./MusicianList";
-import MusicianInfo from "./MusicianInfo";
-import SingerList from "./SingerList";
-import SingerInfo from "./SingerInfo";
-import AlbumList from "./Album/AlbumList";
-import AlbumInfo from "./Album/AlbumInfo";
-import AudioPlayer from "./Player/AudioPlayer";
-import MusicPlayer from "./MusicPlayer";
+import { Home } from "../screens/Home";
+import { MusicianList, MusicianInfo } from "../screens/Musician";
+import { SingerList, SingerInfo } from "../screens/Singer";
+import { AlbumList, AlbumInfo } from "../screens/Album";
+
 import Constants from "expo-constants";
 import { View, Platform } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
@@ -88,48 +84,12 @@ const AlbumNavigator = createStackNavigator(
     }
 );
 
-const AudioPlayerNavigator = createStackNavigator(
-    {
-        AudioPlayer: { screen: AudioPlayer },
-    },
-    {
-        defaultNavigationOptions: {
-            headerStyle: {
-                backgroundColor: "#5637DD",
-            },
-            headerTintColor: "#fff",
-            headerTitleStyle: {
-                color: "#fff",
-            },
-        },
-    }
-);
-
-const MusicPlayerNavigator = createStackNavigator(
-    {
-        MusicPlayer: { screen: MusicPlayer },
-    },
-    {
-        defaultNavigationOptions: {
-            headerStyle: {
-                backgroundColor: "#5637DD",
-            },
-            headerTintColor: "#fff",
-            headerTitleStyle: {
-                color: "#fff",
-            },
-        },
-    }
-);
-
 const MainNavigator = createDrawerNavigator(
     {
         Home: { screen: HomeNavigator },
         Musician: { screen: MusicianNavigator },
         Singer: { screen: SingerNavigator },
         Album: { screen: AlbumNavigator },
-        Audio: { screen: AudioPlayerNavigator },
-        Music: { screen: MusicPlayerNavigator },
     },
     {
         drawerBackgroundColor: "#CEC8FF",

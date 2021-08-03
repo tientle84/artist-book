@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Text, View, Image } from "react-native";
 import { Card } from "react-native-elements";
-import { MUSICIANS } from "../shared/musicians";
+import { MUSICIANS } from "../../shared/musicians";
 
 function RenderMusician({ musician }) {
     if (musician) {
