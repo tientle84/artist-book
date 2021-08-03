@@ -7,7 +7,6 @@ import {
     ImageBackground,
 } from "react-native";
 import { Card } from "react-native-elements";
-import { ALBUMS } from "../../shared/albums";
 import AudioPlayer from "./Player/AudioPlayer";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -57,22 +56,12 @@ function RenderAlbum({ album }) {
 }
 
 class AlbumInfo extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            albums: ALBUMS,
-        };
-    }
-
     static navigationOptions = {
         title: "Album Information",
     };
 
     render() {
-        const albumId = this.props.navigation.getParam("albumId");
-        const album = this.state.albums.filter(
-            (album) => album.id === albumId
-        )[0];
+        const album = this.props.navigation.getParam("album");
         return (
             <ScrollView>
                 <RenderAlbum album={album} />

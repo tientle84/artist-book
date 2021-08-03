@@ -20,7 +20,7 @@ let PLAYLIST = [];
 
 function CreatePlaylist({ tracks }) {
     PLAYLIST = tracks.map(
-        (track) => new PlaylistItem(track.name, track.uri, track.isVideo)
+        (track) => new PlaylistItem(track.title, track.uri, track.isVideo)
     );
 }
 
@@ -185,7 +185,7 @@ export default class App extends React.Component {
             });
         } else {
             this.setState({
-                playbackInstanceName: PLAYLIST[this.index].name,
+                playbackInstanceName: PLAYLIST[this.index].title,
                 showVideo: PLAYLIST[this.index].isVideo,
                 isLoading: false,
             });

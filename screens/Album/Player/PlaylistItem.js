@@ -1,8 +1,8 @@
 import React from "react";
 
 class PlaylistItem {
-    constructor(name, uri, isVideo) {
-        this.name = name;
+    constructor(title, uri, isVideo) {
+        this.title = title;
         this.uri = uri;
         this.isVideo = isVideo;
     }
