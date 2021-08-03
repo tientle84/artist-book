@@ -1,14 +1,27 @@
 import React, { Component } from "react";
 import { FlatList } from "react-native";
 import { ListItem } from "react-native-elements";
-import { SINGERS } from "../../shared/singers";
+import { firebase } from "../../firebase/firebaseConfig";
+
+const singersRef = firebase.firestore().collection("singers");
 
 class SingerList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            singers: SINGERS,
+            singers: [],
         };
+    }
+
+    componentDidMount() {
+        let singerList = [];
+        singersRef.get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                singerList.push({ ...doc.data(), id: doc.id }); // add id prop (=doc id) for each singer
+            });
+
+            this.setState({ singers: singerList });
+        });
     }
 
     static navigationOptions = {
@@ -22,9 +35,7 @@ class SingerList extends Component {
                 <ListItem
                     title={item.name}
                     subtitle={item.birthDate}
-                    onPress={() =>
-                        navigate("SingerInfo", { singerId: item.id })
-                    }
+                    onPress={() => navigate("SingerInfo", { singer: item })}
                     leftAvatar={{
                         source: { uri: item.image },
                         rounded: true,

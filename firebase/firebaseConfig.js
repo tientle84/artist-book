@@ -11,8 +11,8 @@ var firebaseConfig = {
     measurementId: "G-YKH3Z4R5TP",
 };
 
-// Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore(app);
-export const musiciansRef = db.collection("musicians");
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
+
 export { firebase };

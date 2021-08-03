@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { FlatList } from "react-native";
 import { ListItem } from "react-native-elements";
-import { musiciansRef } from "../../firebase/firebaseConfig";
+import { firebase } from "../../firebase/firebaseConfig";
+
+const musiciansRef = firebase.firestore().collection("musicians");
 
 class MusicianList extends Component {
     constructor(props) {
@@ -10,10 +12,6 @@ class MusicianList extends Component {
             musicians: [],
         };
     }
-
-    static navigationOptions = {
-        title: "Musician",
-    };
 
     componentDidMount() {
         let musicianList = [];
@@ -25,6 +23,10 @@ class MusicianList extends Component {
             this.setState({ musicians: musicianList });
         });
     }
+
+    static navigationOptions = {
+        title: "Musician",
+    };
 
     render() {
         const { navigate } = this.props.navigation;
