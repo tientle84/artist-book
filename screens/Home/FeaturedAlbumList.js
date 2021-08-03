@@ -1,14 +1,27 @@
 import React, { Component } from "react";
 import { TouchableOpacity, FlatList, Text, View } from "react-native";
 import { Avatar } from "react-native-elements";
-import { ALBUMS } from "../../shared/albums";
+import { firebase } from "../../firebase/firebaseConfig";
+
+const albumsRef = firebase.firestore().collection("albums");
 
 class FeaturedAlbumList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            albums: ALBUMS,
+            albums: [],
         };
+    }
+
+    componentDidMount() {
+        let albumList = [];
+        albumsRef.get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                albumList.push({ ...doc.data(), id: doc.id }); // add id prop (=doc id) for each album
+            });
+
+            this.setState({ albums: albumList });
+        });
     }
 
     render() {
@@ -17,7 +30,7 @@ class FeaturedAlbumList extends Component {
             return (
                 <TouchableOpacity
                     style={{ alignItems: "center" }}
-                    onPress={() => navigate("AlbumInfo", { albumId: item.id })}
+                    onPress={() => navigate("AlbumInfo", { album: item })}
                 >
                     <Avatar
                         size={120}

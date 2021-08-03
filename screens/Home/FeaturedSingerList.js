@@ -1,14 +1,27 @@
 import React, { Component } from "react";
 import { TouchableOpacity, FlatList, Text, View } from "react-native";
 import { Avatar } from "react-native-elements";
-import { SINGERS } from "../../shared/singers";
+import { firebase } from "../../firebase/firebaseConfig";
+
+const singersRef = firebase.firestore().collection("singers");
 
 class FeaturedSingerList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            singers: SINGERS,
+            singers: [],
         };
+    }
+
+    componentDidMount() {
+        let singerList = [];
+        singersRef.get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                singerList.push({ ...doc.data(), id: doc.id }); // add id prop (=doc id) for each singer
+            });
+
+            this.setState({ singers: singerList });
+        });
     }
 
     render() {
@@ -17,9 +30,7 @@ class FeaturedSingerList extends Component {
             return (
                 <TouchableOpacity
                     style={{ alignItems: "center" }}
-                    onPress={() =>
-                        navigate("SingerInfo", { singerId: item.id })
-                    }
+                    onPress={() => navigate("SingerInfo", { singer: item })}
                 >
                     <Avatar
                         size={120}
