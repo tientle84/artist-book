@@ -11,8 +11,13 @@ var firebaseConfig = {
     measurementId: "G-YKH3Z4R5TP",
 };
 
+let Firebase = null;
 if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
+    Firebase = firebase.initializeApp(firebaseConfig);
 }
 
-export { firebase };
+// Initialize Firebase
+//let Firebase = firebase.initializeApp(firebaseConfig);
+
+export const db = Firebase.firestore();
+export default Firebase;

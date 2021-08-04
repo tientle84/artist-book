@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { TouchableOpacity, FlatList, Text, View } from "react-native";
 import { Avatar } from "react-native-elements";
-import { firebase } from "../../firebase/firebaseConfig";
+import Firebase from "../../firebase/firebaseConfig";
 
-const albumsRef = firebase.firestore().collection("albums");
+const albumsRef = Firebase.firestore().collection("albums");
 
 class FeaturedAlbumList extends Component {
     constructor(props) {

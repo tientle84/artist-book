@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { FlatList } from "react-native";
 import { ListItem } from "react-native-elements";
-import { firebase } from "../../firebase/firebaseConfig";
+import Firebase from "../../firebase/firebaseConfig";
 
-const singersRef = firebase.firestore().collection("singers");
+const singersRef = Firebase.firestore().collection("singers");
 
 class SingerList extends Component {
     constructor(props) {
